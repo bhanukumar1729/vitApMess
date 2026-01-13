@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhanukumar1729/vitApMess.git"
+  },
+  "author": "Bhanu Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhanukumar1729/vitApMess/issues"
+  },
+  "homepage": "https://github.com/bhanukumar1729/vitApMess#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

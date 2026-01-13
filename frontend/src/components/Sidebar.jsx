@@ -12,13 +12,11 @@ const Sidebar = ({
   sidebarWidth,
   setSidebarWidth,
   isMobile,
-  theme,      // <-- Accept new prop
-  setTheme    // <-- Accept new prop
+  theme,      
+  setTheme    
 }) => {
   
   const [isResizing, setIsResizing] = useState(false);
-
-  // ... (Resizing logic... NO CHANGES) ...
   const startResizing = useCallback((e) => { e.preventDefault(); setIsResizing(true); }, []);
   const stopResizing = useCallback(() => { setIsResizing(false); }, []);
   const resize = useCallback((e) => {
@@ -65,7 +63,7 @@ const Sidebar = ({
       <div className="w-full p-6 flex flex-col h-full overflow-y-auto">
         <div className="flex justify-between items-center mb-10">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white truncate">Paucek & Lage</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white truncate">VitapMess</h1>
             <span className="text-sm text-gray-500 dark:text-gray-400">Restaurant</span>
           </div>
           <button 
@@ -88,7 +86,6 @@ const Sidebar = ({
                        hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
           >
             {theme === 'light' ? <BiMoon size={20} /> : <BiSun size={20} />}
-            <span>Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode</span>
           </button>
         </div>
         

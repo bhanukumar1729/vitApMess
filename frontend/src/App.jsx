@@ -44,7 +44,7 @@ function App() {
       className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white" 
       // --- NEW: Conditional background image (only for dark mode) ---
       style={theme === 'dark' ? { 
-        backgroundImage: 'url("https://www.transparenttextures.com/patterns/dark-wood.png")' 
+        backgroundColor:"gray" 
       } : {}}
     >
       <Sidebar 

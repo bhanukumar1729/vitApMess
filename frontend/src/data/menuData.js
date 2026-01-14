@@ -41,7 +41,7 @@ export const menuData = {
   },
   snacks: {
     title: 'Snacks',
-    image: 'https://images.unsplash.com/photo-1559058474-5d59e3c3b7f3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=600&fit=crop',
+    image: 'https://plus.unsplash.com/premium_photo-1695297516676-04a259917c03?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2Ftb3NhfGVufDB8fDB8fHww',
     items: [
       { name: 'Samosa' },
       { name: 'Cookies' },

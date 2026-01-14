@@ -1,7 +1,6 @@
 import React from 'react';
 import MenuItem from './MenuItem.jsx';
-import Header from './Header.jsx'; // --- NEW: Import Header ---
-// --- Icons are no longer needed here ---
+import Header from './Header.jsx'; 
 import { BiSun, BiFoodMenu, BiMoon, BiCookie } from 'react-icons/bi';
 
 const menuIcons = {
@@ -10,7 +9,7 @@ const menuIcons = {
   dinner: <BiMoon size={20} />,
   snacks: <BiCookie size={20} />,
 };
-const navItems = ['breakfast', 'lunch', 'dinner', 'snacks'];
+const navItems = ['breakfast', 'lunch', "snacks",'dinner'];
 
 const MainContent = ({ 
   menuData, 
@@ -25,31 +24,22 @@ const MainContent = ({
 }) => {
   const { title, image } = menuData;
 
-  const imageSizeClass = title.toLowerCase() === 'breakfast'
-    ? 'w-2/3 lg:w-3/4' 
-    : 'w-full';        
-
+  const imageSizeClass = 'w-full';        
   return (
     <main 
       className="flex-1 overflow-y-auto transition-all duration-300 ease-in-out
                  p-4 sm:p-10"
       style={{ marginLeft: isSidebarOpen && !isMobile ? `${sidebarWidth}px` : '0px' }}
     >
-      {/* --- NEW: Render Header component --- */}
       <Header
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
         isMobile={isMobile}
-        title={title}
         currentHostel={currentHostel}
         currentMenuType={currentMenuType}
       />
-
-      {/* --- HEADER CODE REMOVED FROM HERE --- */}
-
-      {/* --- Menu Navigation Tabs (Updated styles) --- */}
       <nav className="mb-8 sm:mb-12">
-        <ul className="flex flex-wrap items-center gap-2 sm:gap-4 border-b border-gray-200 dark:border-gray-700">
+        <ul className="flex flex-wrap items-center gap-2 sm:gap-4 border-b border-[rgb(var(--border))]">
           {navItems.map((menu) => {
             const isActive = selectedMenu === menu;
             return (
@@ -61,7 +51,7 @@ const MainContent = ({
                   font-medium text-base sm:text-lg -mb-px
                   ${isActive
                     ? 'border-b-2 border-brand-DEFAULT text-brand-DEFAULT' 
-                    : 'text-gray-500 dark:text-white-400 hover:text-black dark:hover:text-white'
+                    : 'border-[rgb(var(--border))]'
                   }
                 `}
               >
@@ -77,7 +67,7 @@ const MainContent = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
         
         {/* --- Item List (Updated styles) --- */}
-        <div className="bg-white dark:bg-black/30 backdrop-blur-sm p-4 sm:p-6 rounded-lg shadow-md dark:shadow-none">
+        <div className="bg-[rgb(var(--bg))] text-[rgb(var(--text))] backdrop-blur-sm p-4 sm:p-6 rounded-lg shadow-md ">
           {menuData.items.map((item) => (
             <MenuItem key={item.name} name={item.name} />
           ))}
@@ -90,7 +80,7 @@ const MainContent = ({
             alt={title}
             className={`
               rounded-full object-cover aspect-square 
-              shadow-lg dark:shadow-2xl dark:shadow-black/50
+              shadow-lg bg-[rgb(var(--bg))] 
               transition-all duration-500 ease-in-out
               ${imageSizeClass}
             `}

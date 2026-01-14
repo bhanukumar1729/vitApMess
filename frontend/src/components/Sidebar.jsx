@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-// --- NEW: Import icons for theme toggle ---
 import { BiCalendar, BiX, BiSun, BiMoon } from 'react-icons/bi';
 
 const MIN_WIDTH = 200;
@@ -51,9 +50,9 @@ const Sidebar = ({
       // --- NEW: Updated light/dark styles ---
       className={`
         fixed top-0 left-0 z-40 h-screen 
-        bg-white/80 dark:bg-black/80 backdrop-blur-sm 
-        text-gray-800 dark:text-white 
-        border-r border-gray-200 dark:border-gray-800
+        backdrop-blur-sm 
+        bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+        border-r border-[rgb(var(--border))]
         flex flex-col
         transition-transform duration-300 ease-in-out
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -63,12 +62,11 @@ const Sidebar = ({
       <div className="w-full p-6 flex flex-col h-full overflow-y-auto">
         <div className="flex justify-between items-center mb-10">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white truncate">VitapMess</h1>
-            <span className="text-sm text-gray-500 dark:text-gray-400">Restaurant</span>
+            <h1 className="text-4xl font-bold bg-[rgb(var(--bg))] text-[rgb(var(--text))]">VitapMess</h1>
           </div>
           <button 
             onClick={() => setIsSidebarOpen(false)} 
-            className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+            className="bg-[rgb(var(--bg))] text-[rgb(var(--text))] hover:text-[rgb(var(--text))] transition-colors"
             aria-label="Close menu"
           >
             <BiX size={28} />
@@ -77,13 +75,12 @@ const Sidebar = ({
         
         {/* --- NEW: Theme Toggle Button --- */}
         <div className="mt-auto mb-6">
-          <h2 className="text-xs font-semibold text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-3">Theme</h2>
+          <h2 className="text-xs font-semibold text-[rgb(var(--text))] uppercase tracking-wider mb-3">Theme</h2>
           <button
             onClick={toggleTheme}
             className="w-full flex items-center justify-center gap-2 p-3 rounded-lg 
-                       bg-gray-200 dark:bg-gray-800 
-                       text-gray-800 dark:text-gray-300
-                       hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+                       bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+                       hover:bg-[rgb(var(--hover))]  transition-colors"
           >
             {theme === 'light' ? <BiMoon size={20} /> : <BiSun size={20} />}
           </button>
@@ -93,7 +90,7 @@ const Sidebar = ({
         <div>
           <label 
             htmlFor="date-picker" 
-            className="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 mb-2"
+            className="flex items-center gap-2 text-sm font-medium text-[rgb(var(--text))]"
           >
             <BiCalendar />
             Pick Date
@@ -102,9 +99,8 @@ const Sidebar = ({
             type="date"
             id="date-picker"
             className="w-full p-2 rounded-md 
-                       bg-gray-200 dark:bg-gray-800 
-                       border border-gray-300 dark:border-gray-700 
-                       text-gray-800 dark:text-white 
+                       border border-[rgb(var(--border))]
+                       bg-[rgb(var(--bg))] text-[rgb(var(--text))]
                        focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT"
             defaultValue={new Date().toISOString().split('T')[0]}
           />
@@ -118,7 +114,7 @@ const Sidebar = ({
           className="
             absolute top-0 right-0 h-full w-2 z-50
             cursor-col-resize
-            bg-gray-300/30 dark:bg-gray-600/30 
+            bg-[rgb(var(--bg))]
             hover:bg-brand-DEFAULT transition-colors
           "
         />

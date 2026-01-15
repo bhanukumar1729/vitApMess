@@ -7,7 +7,7 @@ const MOBILE_BREAKPOINT = 1024;
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [sidebarWidth, setSidebarWidth] = useState(256); 
+  const [sidebarWidth, setSidebarWidth] = useState(256);
   const [selectedMenu, setSelectedMenu] = useState('breakfast');
   const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
   const [currentHostel, setCurrentHostel] = useState('Hostel A');
@@ -20,7 +20,7 @@ function App() {
     root.classList.add(theme);
     localStorage.setItem('theme', theme); // Save preference
   }, [theme]);
-  
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
-      <Sidebar 
+      <Sidebar
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
         sidebarWidth={sidebarWidth}
@@ -44,8 +44,8 @@ function App() {
         theme={theme}
         setTheme={setTheme}
       />
-      
-      <MainContent 
+
+      <MainContent
         menuData={currentMenuData}
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}

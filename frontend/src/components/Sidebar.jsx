@@ -5,16 +5,16 @@ const MIN_WIDTH = 200;
 const MAX_WIDTH = 500;
 const MOBILE_WIDTH = 280;
 
-const Sidebar = ({ 
-  isSidebarOpen, 
+const Sidebar = ({
+  isSidebarOpen,
   setIsSidebarOpen,
   sidebarWidth,
   setSidebarWidth,
   isMobile,
-  theme,      
-  setTheme    
+  theme,
+  setTheme
 }) => {
-  
+
   const [isResizing, setIsResizing] = useState(false);
   const startResizing = useCallback((e) => { e.preventDefault(); setIsResizing(true); }, []);
   const stopResizing = useCallback(() => { setIsResizing(false); }, []);
@@ -46,7 +46,7 @@ const Sidebar = ({
   };
 
   return (
-    <aside 
+    <aside
       // --- NEW: Updated light/dark styles ---
       className={`
         fixed top-0 left-0 z-40 h-screen 
@@ -64,15 +64,15 @@ const Sidebar = ({
           <div>
             <h1 className="text-4xl font-bold bg-[rgb(var(--bg))] text-[rgb(var(--text))]">VitapMess</h1>
           </div>
-          <button 
-            onClick={() => setIsSidebarOpen(false)} 
+          <button
+            onClick={() => setIsSidebarOpen(false)}
             className="bg-[rgb(var(--bg))] text-[rgb(var(--text))] hover:text-[rgb(var(--text))] transition-colors"
             aria-label="Close menu"
           >
             <BiX size={28} />
           </button>
         </div>
-        
+
         {/* --- NEW: Theme Toggle Button --- */}
         <div className="mt-auto mb-6">
           <h2 className="text-xs font-semibold text-[rgb(var(--text))] uppercase tracking-wider mb-3">Theme</h2>
@@ -85,17 +85,17 @@ const Sidebar = ({
             {theme === 'light' ? <BiMoon size={20} /> : <BiSun size={20} />}
           </button>
         </div>
-        
+
         {/* Date Picker (Updated styles) */}
         <div>
-          <label 
-            htmlFor="date-picker" 
+          <label
+            htmlFor="date-picker"
             className="flex items-center gap-2 text-sm font-medium text-[rgb(var(--text))]"
           >
             <BiCalendar />
             Pick Date
           </label>
-          <input 
+          <input
             type="date"
             id="date-picker"
             className="w-full p-2 rounded-md 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-  BiMenu, BiBuildingHouse, BiLeaf, BiRestaurant, BiStar 
+import {
+  BiMenu, BiBuildingHouse, BiLeaf, BiRestaurant, BiStar
 } from 'react-icons/bi';
 
 const Header = ({
@@ -29,21 +29,21 @@ const Header = ({
     <header>
       {/* --- Main Header Row --- */}
       <div className="flex items-center mb-2">
-        <button 
-            onClick={() => setIsSidebarOpen(true)}
-            // Light/Dark styles added
-            className={`
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          // Light/Dark styles added
+          className={`
               p-2 mr-2 sm:mr-4 rounded-md 
               bg-[rgb(var(--bg))] text-[rgb(var(--text))]
               transition-all
               ${isSidebarOpen && !isMobile ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'}
             `}
-            aria-label="Open menu"
-            disabled={isSidebarOpen && !isMobile}
-          >
-            <BiMenu size={28} />
-          </button>
-        
+          aria-label="Open menu"
+          disabled={isSidebarOpen && !isMobile}
+        >
+          <BiMenu size={28} />
+        </button>
+
         {/* Title (Light/Dark styles added) */}
         <h1 className="text-3xl sm:text-5xl font-bold bg-[rgb(var(--bg))] text-[rgb(var(--text))] capitalize">
           VitAp Mess

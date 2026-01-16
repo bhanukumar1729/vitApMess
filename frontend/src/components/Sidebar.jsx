@@ -66,10 +66,10 @@ const Sidebar = ({
           </div>
           <button
             onClick={() => setIsSidebarOpen(false)}
-            className="bg-[rgb(var(--bg))] text-[rgb(var(--text))] hover:text-[rgb(var(--text))] transition-colors"
+            className="btn ml-4 bg-[rgb(var(--bg))] text-[rgb(var(--text))] hover:text-[rgb(var(--text))] transition-colors"
             aria-label="Close menu"
           >
-            <BiX size={28} />
+            <BiX size={30} />
           </button>
         </div>
 

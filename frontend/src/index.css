@@ -22,3 +22,12 @@ body {
   background-color: rgb(var(--bg));
   color: rgb(var(--text));
 }
+
+.menuItem:hover{
+  border-bottom: 2px solid rgb(var(--hover));
+  font-size: 110%;
+}
+ .btn:hover{
+  transform: scale(1.2);
+  cursor:pointer;
+ }

@@ -48,10 +48,10 @@ const MainContent = ({
                 onClick={() => setSelectedMenu(menu)}
                 className={`
                   flex items-center gap-2 p-3 sm:p-4 cursor-pointer transition-colors
-                  font-medium text-base sm:text-lg -mb-px
+                  font-medium text-base sm:text-lg -mb-px 
                   ${isActive
                     ? 'border-b-2 border-brand-DEFAULT text-brand-DEFAULT'
-                    : 'border-[rgb(var(--border))]'
+                    : 'border-[rgb(var(--border))] menuItem'
                   }
                 `}
               >

@@ -27,13 +27,11 @@ const Header = ({
 
   return (
     <header>
-      {/* --- Main Header Row --- */}
       <div className="flex items-center mb-2">
         <button
           onClick={() => setIsSidebarOpen(true)}
-          // Light/Dark styles added
           className={`
-              p-2 mr-2 sm:mr-4 rounded-md 
+              btn p-2 mr-2 sm:mr-4 rounded-md 
               bg-[rgb(var(--bg))] text-[rgb(var(--text))]
               transition-all
               ${isSidebarOpen && !isMobile ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'}
@@ -43,15 +41,10 @@ const Header = ({
         >
           <BiMenu size={28} />
         </button>
-
-        {/* Title (Light/Dark styles added) */}
         <h1 className="text-3xl sm:text-5xl font-bold bg-[rgb(var(--bg))] text-[rgb(var(--text))] capitalize">
           VitAp Mess
         </h1>
       </div>
-
-      {/* --- Header Info Bar --- */}
-      {/* (Light/Dark styles added) */}
       <div className="flex flex-wrap items-center gap-4 sm:gap-6 
                     text-gray-600 bg-[rgb(var(--bg))] text-[rgb(var(--text))]
                     text-sm sm:text-base mb-6 

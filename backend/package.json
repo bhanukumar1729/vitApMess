@@ -2,21 +2,19 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
+  
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"node --watch app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bhanukumar1729/vitApMess.git"
-  },
-  "author": "Bhanu Kumar",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bhanukumar1729/vitApMess/issues"
-  },
-  "homepage": "https://github.com/bhanukumar1729/vitApMess#readme",
+  "type": "module",
   "dependencies": {
-    "express": "^5.2.1"
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.4"
   }
 }

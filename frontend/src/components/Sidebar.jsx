@@ -10,9 +10,7 @@ const Sidebar = ({
   setIsSidebarOpen,
   sidebarWidth,
   setSidebarWidth,
-  isMobile,
-  theme,
-  setTheme
+  isMobile
 }) => {
 
   const [isResizing, setIsResizing] = useState(false);
@@ -39,12 +37,6 @@ const Sidebar = ({
 
 
   const currentWidth = isMobile ? MOBILE_WIDTH : sidebarWidth;
-
-  // --- NEW: Toggle function ---
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
   return (
     <aside
       // --- NEW: Updated light/dark styles ---
@@ -72,21 +64,6 @@ const Sidebar = ({
             <BiX size={30} />
           </button>
         </div>
-
-        {/* --- NEW: Theme Toggle Button --- */}
-        <div className="mt-auto mb-6">
-          <h2 className="text-xs font-semibold text-[rgb(var(--text))] uppercase tracking-wider mb-3">Theme</h2>
-          <button
-            onClick={toggleTheme}
-            className="w-full flex items-center justify-center gap-2 p-3 rounded-lg 
-                       bg-[rgb(var(--bg))] text-[rgb(var(--text))]
-                       hover:bg-[rgb(var(--hover))]  transition-colors"
-          >
-            {theme === 'light' ? <BiMoon size={20} /> : <BiSun size={20} />}
-          </button>
-        </div>
-
-        {/* Date Picker (Updated styles) */}
         <div>
           <label
             htmlFor="date-picker"

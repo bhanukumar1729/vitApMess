@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BiMenu, BiBuildingHouse, BiLeaf, BiRestaurant, BiStar
+  BiMenu, BiBuildingHouse, BiLeaf, BiRestaurant, BiStar, BiMoon, BiSun
 } from 'react-icons/bi';
 
 const Header = ({
@@ -9,6 +9,8 @@ const Header = ({
   isMobile,
   currentHostel,
   currentMenuType,
+  theme,
+  setTheme
 }) => {
 
   // Helper function to get the correct icon for menu type
@@ -23,6 +25,9 @@ const Header = ({
       default:
         return <BiLeaf size={18} />;
     }
+  };
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
@@ -57,6 +62,15 @@ const Header = ({
           {getMenuTypeIcon()}
           <span>{currentMenuType}</span>
         </div>
+
+        <button
+          onClick={toggleTheme}
+          className="r-0 flex items-center justify-center gap-2 p-3 rounded-lg 
+                               bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+                               hover:bg-[rgb(var(--hover))]  transition-colors"
+        >
+          {theme === 'light' ? <BiMoon size={20} /> : <BiSun size={20} />}
+        </button>
       </div>
     </header>
   );

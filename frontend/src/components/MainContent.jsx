@@ -31,13 +31,7 @@ const MainContent = ({
                  p-4 sm:p-10"
       style={{ marginLeft: isSidebarOpen && !isMobile ? `${sidebarWidth}px` : '0px' }}
     >
-      <Header
-        isSidebarOpen={isSidebarOpen}
-        setIsSidebarOpen={setIsSidebarOpen}
-        isMobile={isMobile}
-        currentHostel={currentHostel}
-        currentMenuType={currentMenuType}
-      />
+      
       <nav className="mb-8 sm:mb-12">
         <ul className="flex flex-wrap items-center gap-2 sm:gap-4 border-b border-[rgb(var(--border))]">
           {navItems.map((menu) => {
@@ -79,10 +73,9 @@ const MainContent = ({
             src={image}
             alt={title}
             className={`
-              rounded-full object-cover aspect-square 
+              rounded-full aspect-square 
               shadow-lg bg-[rgb(var(--bg))] 
               transition-all duration-500 ease-in-out
-              ${imageSizeClass}
             `}
           />
         </div>

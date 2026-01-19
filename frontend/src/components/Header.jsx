@@ -50,27 +50,30 @@ const Header = ({
           VitAp Mess
         </h1>
       </div>
-      <div className="flex flex-wrap items-center gap-4 sm:gap-6 
+      <div className="flex items-center gap-4 sm:gap-6 
                     text-gray-600 bg-[rgb(var(--bg))] text-[rgb(var(--text))]
                     text-sm sm:text-base mb-6 
                     ml-[44px] sm:ml-[52px]">
-        <div className="flex items-center gap-2 bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-3 py-1 rounded-full">
-          <BiBuildingHouse className="text-[rgb(var(--text))]" size={18} />
-          <span>{currentHostel}</span>
+        <div className='flex  items-center gap-3'>
+          <div className="flex items-center gap-2 bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-3 py-1 rounded-full">
+            <BiBuildingHouse className="text-[rgb(var(--text))]" size={24} />
+            <span>{currentHostel}</span>
+          </div>
+          <div className="flex items-center gap-2 bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-3 py-1 rounded-full">
+            {getMenuTypeIcon()}
+            <span >{currentMenuType}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2 bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-3 py-1 rounded-full">
-          {getMenuTypeIcon()}
-          <span>{currentMenuType}</span>
-        </div>
-
-        <button
-          onClick={toggleTheme}
-          className="r-0 flex items-center justify-center gap-2 p-3 rounded-lg 
+        <div className='ml-auto'> 
+          <button
+            onClick={toggleTheme}
+            className=" flex items-center justify-center gap-2 p-3 rounded-lg 
                                bg-[rgb(var(--bg))] text-[rgb(var(--text))]
                                hover:bg-[rgb(var(--hover))]  transition-colors"
-        >
-          {theme === 'light' ? <BiMoon size={20} /> : <BiSun size={20} />}
-        </button>
+          >
+            {theme === 'light' ? <BiMoon size={24} /> : <BiSun size={24} />}
+          </button>
+        </div>
       </div>
     </header>
   );

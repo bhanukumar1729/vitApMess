@@ -23,12 +23,10 @@ const MainContent = ({
   currentMenuType
 }) => {
   const { title, image } = menuData;
-
-  const imageSizeClass = 'w-full';
   return (
     <main
       className="flex-1 overflow-y-auto transition-all duration-300 ease-in-out
-                 p-4 sm:p-10"
+                 px-4 pb-4 pt-0 sm:p-10"
       style={{ marginLeft: isSidebarOpen && !isMobile ? `${sidebarWidth}px` : '0px' }}
     >
       

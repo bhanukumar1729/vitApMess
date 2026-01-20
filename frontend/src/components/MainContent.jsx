@@ -26,7 +26,7 @@ const MainContent = ({
   return (
     <main
       className="flex-1 overflow-y-auto transition-all duration-300 ease-in-out
-                 px-4 pb-4 pt-0 sm:p-10"
+                 p-2 sm:p-4"
       style={{ marginLeft: isSidebarOpen && !isMobile ? `${sidebarWidth}px` : '0px' }}
     >
       

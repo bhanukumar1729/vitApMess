@@ -67,7 +67,7 @@ const Sidebar = ({
         <div>
           <label
             htmlFor="date-picker"
-            className="flex items-center gap-2 text-sm font-medium text-[rgb(var(--text))]"
+            className="flex items-center gap-2 text-sm font-medium text-[rgb(var(--text))] cursor-pointer"
           >
             <BiCalendar />
             Pick Date
@@ -77,6 +77,7 @@ const Sidebar = ({
             id="date-picker"
             className="w-full p-2 rounded-md 
                        border border-[rgb(var(--border))]
+                       cursor-pointer
                        bg-[rgb(var(--bg))] text-[rgb(var(--text))]
                        focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT"
             defaultValue={new Date().toISOString().split('T')[0]}

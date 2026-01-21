@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BiCalendar, BiX, BiSun, BiMoon } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
+
 
 const MIN_WIDTH = 200;
 const MAX_WIDTH = 500;
@@ -12,7 +14,7 @@ const Sidebar = ({
   setSidebarWidth,
   isMobile
 }) => {
-
+  const navigate=useNavigate();
   const [isResizing, setIsResizing] = useState(false);
   const startResizing = useCallback((e) => { e.preventDefault(); setIsResizing(true); }, []);
   const stopResizing = useCallback(() => { setIsResizing(false); }, []);
@@ -35,7 +37,10 @@ const Sidebar = ({
     };
   }, [isResizing, resize, stopResizing]);
 
-
+  function resetPreference(){
+    localStorage.removeItem("preference");
+    navigate("/init");
+  }
   const currentWidth = isMobile ? MOBILE_WIDTH : sidebarWidth;
   return (
     <aside
@@ -83,6 +88,10 @@ const Sidebar = ({
             defaultValue={new Date().toISOString().split('T')[0]}
           />
         </div>
+
+        <button className="m-4 btn text-xl p-2 mr-2 sm:mr-4 rounded-md 
+              bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+              transition-all border border-[rgb(var(--border))]" onClick={resetPreference}> Rest Prefernces !</button>
       </div>
 
       {/* Resizer Handle (Updated styles) */}

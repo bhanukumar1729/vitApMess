@@ -24,7 +24,7 @@ body {
   font-size: 24px;
 }
 *{
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .menuItem:hover{
@@ -32,6 +32,6 @@ body {
   font-size: 110%;
 }
  .btn:hover{
-  transform: scale(1.2);
+  transform: scale(1.1);
   cursor:pointer;
  }

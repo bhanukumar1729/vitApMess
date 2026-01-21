@@ -40,14 +40,22 @@ const FirstPage = () => {
           <label htmlFor="hostel" className="block mb-1">
             Hostel name
           </label>
-          <input
-            type="text"
+          <select
             id="hostel"
             value={hostel}
             onChange={(e) => setHostel(e.target.value)}
-            placeholder="Enter your hostel name"
-            className="w-full px-3 py-2 border rounded bg-transparent"
-          />
+            className="w-full px-3 py-2 border rounded bg-transparent bg-[rgb(var(--bg))] text-[rgb(var(--text))]"
+          >
+            <option value="MH1">MH1</option>
+            <option value="MH2">MH2</option>
+            <option value="MH3">MH3</option>
+            <option value="MH4">MH4</option>
+            <option value="MH5">MH5</option>
+            <option value="LH1">LH1</option>
+            <option value="LH2">LH2</option>
+            <option value="LH3">LH3</option>
+
+          </select>
         </div>
 
         <div>
@@ -58,7 +66,7 @@ const FirstPage = () => {
             id="menu"
             value={menu}
             onChange={(e) => setMenu(e.target.value)}
-            className="w-full px-3 py-2 border rounded bg-transparent"
+            className="w-full px-3 py-2 border rounded bg-transparent bg-[rgb(var(--bg))] text-[rgb(var(--text))]"
           >
             <option value="Veg">Veg</option>
             <option value="Non-Veg">Non-Veg</option>

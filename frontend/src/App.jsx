@@ -36,6 +36,14 @@ function DashboardLayout() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(()=>{
+    const prefernce=JSON.parse(localStorage.getItem('preference'))
+    if( prefernce && prefernce.hostel && prefernce.menu){
+      setCurrentHostel(prefernce.hostel);
+      setCurrentMenuType(prefernce.menu);
+    }
+  })
+
   return (
     <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
       <Sidebar
@@ -74,7 +82,7 @@ function App() {
   return (
     <Routes>
       {/* First page */}
-      <Route path="/first" element={<FirstPage />} />
+      <Route path="/init" element={<FirstPage />} />
 
       {/* Protected dashboard */}
       <Route

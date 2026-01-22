@@ -1,20 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const FirstPage = () => {
   const [menu, setMenu] = useState("Veg");
-  const [hostel, setHostel] = useState("");
+  const [hostel, setHostel] = useState("MH1");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!hostel.trim()) {
-      alert("Please enter hostel name");
-      return;
-    }
-
-    // Save preferences
+    //if(localStorage.getItem('preference'))localStorage.removeItem('preference')
     const preferences = {
       hostel,
       menu,
@@ -25,6 +19,13 @@ const FirstPage = () => {
     // Redirect to main app
     navigate("/", { replace: true });
   };
+  useEffect(()=>{
+    const pref=JSON.parse(localStorage.getItem('preference'))
+    if(pref && pref.hostel && pref.menu){
+      setHostel(pref.hostel);
+      setMenu(pref.menu);
+    }
+  },[]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
@@ -44,7 +45,7 @@ const FirstPage = () => {
             id="hostel"
             value={hostel}
             onChange={(e) => setHostel(e.target.value)}
-            className="w-full px-3 py-2 border rounded bg-transparent bg-[rgb(var(--bg))] text-[rgb(var(--text))]"
+            className="w-full px-3 py-2 border rounded bg-transparent bg-[rgb(var(--bg))] text-[rgb(var(--text))] dark:[color-scheme:dark]"
           >
             <option value="MH1">MH1</option>
             <option value="MH2">MH2</option>
@@ -68,8 +69,8 @@ const FirstPage = () => {
             onChange={(e) => setMenu(e.target.value)}
             className="w-full px-3 py-2 border rounded bg-transparent bg-[rgb(var(--bg))] text-[rgb(var(--text))]"
           >
-            <option value="Veg">Veg</option>
-            <option value="Non-Veg">Non-Veg</option>
+            <option value="veg">Veg</option>
+            <option value="non veg">Non-Veg</option>
             <option value="Special">Special</option>
           </select>
         </div>

@@ -38,7 +38,7 @@ const Sidebar = ({
   }, [isResizing, resize, stopResizing]);
 
   function resetPreference(){
-    localStorage.removeItem("preference");
+    //localStorage.removeItem("preference");
     navigate("/init");
   }
   const currentWidth = isMobile ? MOBILE_WIDTH : sidebarWidth;
@@ -91,7 +91,7 @@ const Sidebar = ({
 
         <button className="m-4 btn text-xl p-2 mr-2 sm:mr-4 rounded-md 
               bg-[rgb(var(--bg))] text-[rgb(var(--text))]
-              transition-all border border-[rgb(var(--border))]" onClick={resetPreference}> Rest Prefernces !</button>
+              transition-all border border-[rgb(var(--border))]" onClick={()=>{navigate('/init')}}> Rest Prefernces !</button>
       </div>
 
       {/* Resizer Handle (Updated styles) */}

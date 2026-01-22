@@ -15,6 +15,7 @@
   --text: 243 244 246;
   --border: 55 65 81;
   --hover: 77 77 77;  
+  color-scheme: dark;
 }
 
 
@@ -35,3 +36,8 @@ body {
   transform: scale(1.1);
   cursor:pointer;
  }
+
+option{
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+}

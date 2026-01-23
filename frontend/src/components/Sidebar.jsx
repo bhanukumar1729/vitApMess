@@ -91,7 +91,7 @@ const Sidebar = ({
 
         <button className="m-4 btn text-xl p-2 mr-2 sm:mr-4 rounded-md 
               bg-[rgb(var(--bg))] text-[rgb(var(--text))]
-              transition-all border border-[rgb(var(--border))]" onClick={()=>{navigate('/init')}}> Rest Prefernces !</button>
+              transition-all border border-[rgb(var(--border))]" onClick={()=>{navigate('/init')}}> Reset Prefernces !</button>
       </div>
 
       {/* Resizer Handle (Updated styles) */}

@@ -1,9 +1,8 @@
-// We'll use placeholder images. Replace these with your actual image URLs.
 export const menuData = {
   breakfast: {
     title: 'Breakfast',
-    image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=600&fit=crop',
-    // 'sections' array is replaced with a single 'items' array
+    image:
+      'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80',
     items: [
       { name: 'Classic Pancakes' },
       { name: 'Avocado Toast' },
@@ -12,24 +11,26 @@ export const menuData = {
       { name: 'Coffee' },
     ],
   },
+
   lunch: {
     title: 'Lunch',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=600&fit=crop',
-    // All items are merged into one array
+    image:
+      'https://images.unsplash.com/photo-1604908554027-3a7b82c23e6b?auto=format&fit=crop&w=600&q=80',
     items: [
       { name: 'Cheeseburger' },
-      { name: 'Cheese sandwich' },
-      { name: 'Chicken burgers' },
-      { name: 'Spicy chicken' },
-      { name: 'Hot dog' },
+      { name: 'Cheese Sandwich' },
+      { name: 'Chicken Burger' },
+      { name: 'Spicy Chicken' },
+      { name: 'Hot Dog' },
       { name: 'Nuggets' },
       { name: 'French Fries' },
     ],
   },
+
   dinner: {
     title: 'Dinner',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=600&fit=crop',
-    // All items are merged into one array
+    image:
+      'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=600&q=80',
     items: [
       { name: 'Roasted Chicken' },
       { name: 'Grilled Salmon' },
@@ -39,9 +40,11 @@ export const menuData = {
       { name: 'Sandwich' },
     ],
   },
+
   snacks: {
     title: 'Snacks',
-    image: 'https://plus.unsplash.com/premium_photo-1695297516676-04a259917c03?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2Ftb3NhfGVufDB8fDB8fHww',
+    image:
+      'https://images.unsplash.com/photo-1585238342028-4bbc97c9c6dd?auto=format&fit=crop&w=600&q=80',
     items: [
       { name: 'Samosa' },
       { name: 'Cookies' },

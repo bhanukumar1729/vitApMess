@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
+import axios from 'axios'
+ 
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 import FirstPage from "./components/firstpage";
@@ -9,7 +10,7 @@ import PreferenceRoute from "./PreferenceRoute";
 import { menuData } from "./data/menuData";
 
 const MOBILE_BREAKPOINT = 1024;
-
+const Backend_Url=import.meta.env.VITE_BACKEND_URL;
 function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(256);
@@ -18,6 +19,8 @@ function DashboardLayout() {
   const [currentHostel, setCurrentHostel] = useState("Hostel A");
   const [currentMenuType, setCurrentMenuType] = useState("Non Veg");
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [menuResponse, setMenuResponse] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -43,6 +46,40 @@ function DashboardLayout() {
       setCurrentMenuType(prefernce.menu);
     }
   })
+  useEffect(() => {
+  const preference = JSON.parse(localStorage.getItem("preference"));
+
+  if (!preference) return;
+
+  const { hostel, menu } = preference;
+
+  setCurrentHostel(hostel);
+  setCurrentMenuType(menu);
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const fetchMenu = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${Backend_Url}`+"api/menu", {
+        params: {
+          date: today,
+          hostelType: hostel.toLowerCase(),
+          menuType: menu.toLowerCase() // veg / non veg / special
+        }
+      });
+      setMenuResponse(res.data);
+    } catch (err) {
+      console.error("Failed to fetch menu", err);
+      setMenuResponse(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchMenu();
+}, []);
+
 
   return (
     <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))]">
@@ -65,15 +102,15 @@ function DashboardLayout() {
       />
 
       <MainContent
-        menuData={menuData[selectedMenu]}
-        isSidebarOpen={isSidebarOpen}
-        sidebarWidth={sidebarWidth}
-        selectedMenu={selectedMenu}
-        setSelectedMenu={setSelectedMenu}
-        isMobile={isMobile}
-        currentHostel={currentHostel}
-        currentMenuType={currentMenuType}
-      />
+      menuResponse={menuResponse}
+      loading={loading}
+      isSidebarOpen={isSidebarOpen}
+      sidebarWidth={sidebarWidth}
+      selectedMenu={selectedMenu}
+      setSelectedMenu={setSelectedMenu}
+      isMobile={isMobile}
+    />
+
     </div>
   );
 }

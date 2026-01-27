@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { BiCalendar, BiX, BiSun, BiMoon } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState, useEffect, useCallback } from "react";
+import { BiCalendar, BiX } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const MIN_WIDTH = 200;
 const MAX_WIDTH = 500;
@@ -12,96 +11,126 @@ const Sidebar = ({
   setIsSidebarOpen,
   sidebarWidth,
   setSidebarWidth,
-  isMobile
+  isMobile,
+  onSubmitDate, // 👈 from App.jsx
 }) => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+
   const [isResizing, setIsResizing] = useState(false);
-  const startResizing = useCallback((e) => { e.preventDefault(); setIsResizing(true); }, []);
-  const stopResizing = useCallback(() => { setIsResizing(false); }, []);
-  const resize = useCallback((e) => {
-    if (isResizing) {
-      let newWidth = e.clientX;
-      if (newWidth < MIN_WIDTH) newWidth = MIN_WIDTH;
-      if (newWidth > MAX_WIDTH) newWidth = MAX_WIDTH;
-      setSidebarWidth(newWidth);
-    }
-  }, [isResizing, setSidebarWidth]);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+
+  /* ---------- Resize Logic ---------- */
+  const startResizing = useCallback((e) => {
+    e.preventDefault();
+    setIsResizing(true);
+  }, []);
+
+  const stopResizing = useCallback(() => setIsResizing(false), []);
+
+  const resize = useCallback(
+    (e) => {
+      if (isResizing) {
+        let newWidth = e.clientX;
+        if (newWidth < MIN_WIDTH) newWidth = MIN_WIDTH;
+        if (newWidth > MAX_WIDTH) newWidth = MAX_WIDTH;
+        setSidebarWidth(newWidth);
+      }
+    },
+    [isResizing, setSidebarWidth]
+  );
+
   useEffect(() => {
     if (isResizing) {
-      window.addEventListener('mousemove', resize);
-      window.addEventListener('mouseup', stopResizing);
+      window.addEventListener("mousemove", resize);
+      window.addEventListener("mouseup", stopResizing);
     }
     return () => {
-      window.removeEventListener('mousemove', resize);
-      window.removeEventListener('mouseup', stopResizing);
+      window.removeEventListener("mousemove", resize);
+      window.removeEventListener("mouseup", stopResizing);
     };
   }, [isResizing, resize, stopResizing]);
 
-  function resetPreference(){
-    //localStorage.removeItem("preference");
-    navigate("/init");
-  }
   const currentWidth = isMobile ? MOBILE_WIDTH : sidebarWidth;
+
   return (
     <aside
-      // --- NEW: Updated light/dark styles ---
       className={`
-        fixed top-0 left-0 z-40 h-screen 
-        backdrop-blur-sm 
+        fixed top-0 left-0 z-40 h-screen
         bg-[rgb(var(--bg))] text-[rgb(var(--text))]
         border-r border-[rgb(var(--border))]
-        flex flex-col
         transition-transform duration-300 ease-in-out
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}
       style={{ width: `${currentWidth}px` }}
     >
-      <div className="w-full p-6 flex flex-col h-full overflow-y-auto">
-        <div className="flex justify-between items-center mb-10">
-          <div>
-            <h1 className="text-4xl font-bold bg-[rgb(var(--bg))] text-[rgb(var(--text))]">VitapMess</h1>
-          </div>
-          <button
-            onClick={() => setIsSidebarOpen(false)}
-            className="btn ml-4 bg-[rgb(var(--bg))] text-[rgb(var(--text))] hover:text-[rgb(var(--text))] transition-colors"
-            aria-label="Close menu"
-          >
+      <div className="p-6 flex flex-col gap-6 h-full">
+        {/* ---------- Header ---------- */}
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold">VitapMess</h1>
+          <button onClick={() => setIsSidebarOpen(false)}>
             <BiX size={30} />
           </button>
         </div>
-        <div>
-          <label
-            htmlFor="date-picker"
-            className="flex items-center gap-2 text-sm font-medium text-[rgb(var(--text))] cursor-pointer"
-          >
+
+        {/* ---------- Date + Submit Box ---------- */}
+        <div className="border border-[rgb(var(--border))] rounded-lg p-3">
+          <label className="flex items-center gap-2 text-sm font-medium mb-2">
             <BiCalendar />
             Pick Date
           </label>
+
+          {/* Date input */}
           <input
             type="date"
-            id="date-picker"
-            className="w-full p-2 rounded-md 
-                       border border-[rgb(var(--border))]
-                       cursor-pointer
-                       bg-[rgb(var(--bg))] text-[rgb(var(--text))]
-                       focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT"
-            defaultValue={new Date().toISOString().split('T')[0]}
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            className="
+      w-full p-2 rounded-md border mb-3
+      bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+      focus:outline-none focus:ring-2 focus:ring-brand-DEFAULT
+    "
           />
+
+          {/* Submit button (next line, same box) */}
+          <button
+            className="
+      w-full py-2 rounded-md
+      bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+      hover:opacity-90 transition
+    "
+            onClick={() => {
+              onSubmitDate(selectedDate);
+              setIsSidebarOpen(false);
+            }}
+          >
+            Submit
+          </button>
         </div>
 
-        <button className="m-4 btn text-xl p-2 mr-2 sm:mr-4 rounded-md 
-              bg-[rgb(var(--bg))] text-[rgb(var(--text))]
-              transition-all border border-[rgb(var(--border))]" onClick={()=>{navigate('/init')}}> Reset Prefernces !</button>
+
+        {/* ---------- Reset Preferences ---------- */}
+        <button
+          className="
+            mt-auto p-2 rounded-md border
+            bg-[rgb(var(--bg))] text-[rgb(var(--text))]
+            hover:bg-[rgb(var(--border))]
+            transition
+          "
+          onClick={() => navigate("/init")}
+        >
+          Reset Preferences
+        </button>
       </div>
 
-      {/* Resizer Handle (Updated styles) */}
+      {/* ---------- Resizer ---------- */}
       {!isMobile && (
         <div
           onMouseDown={startResizing}
           className="
-            absolute top-0 right-0 h-full w-2 z-50
+            absolute top-0 right-0 h-full w-2
             cursor-col-resize
-            bg-[rgb(var(--bg))]
             hover:bg-brand-DEFAULT transition-colors
           "
         />

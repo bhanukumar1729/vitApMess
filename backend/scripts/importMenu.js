@@ -18,7 +18,7 @@ const importMenu = async () => {
     // 2️⃣ Read new merged JSON
     const data = JSON.parse(
       fs.readFileSync(
-        "./data/january_menu_2026_merged_with_meals.json",
+        "./data/january_menu_2026_VEG_NONVEG_DOUBLED.json",
         "utf-8"
       )
     );

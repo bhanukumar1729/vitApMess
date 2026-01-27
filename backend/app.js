@@ -36,6 +36,7 @@ app.use(
 app.get("/api/menu", async (req, res) => {
   try {
     const { date, hostelType, menuType } = req.query;
+    console.log(date,hostelType,menuType);
 
     if (!date || !hostelType || !menuType) {
       return res.status(400).json({

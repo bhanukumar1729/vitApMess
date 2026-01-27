@@ -22,6 +22,34 @@ function DashboardLayout() {
   const [menuResponse, setMenuResponse] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchMenuByDate = async (date) => {
+  try {
+    setLoading(true);
+
+    const preference = JSON.parse(localStorage.getItem("preference"));
+    if (!preference) return;
+
+    const res = await axios.get(
+      `${Backend_Url}api/menu`,
+      {
+        params: {
+          date,
+          hostelType: preference.hostel.toLowerCase(),
+          menuType: preference.menu.toLowerCase()
+        }
+      }
+    );
+
+    setMenuResponse(res.data);
+  } catch (err) {
+    console.error("Failed to fetch menu", err);
+    setMenuResponse(null);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove("light", "dark");
@@ -32,7 +60,6 @@ function DashboardLayout() {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-      setIsSidebarOpen(window.innerWidth >= MOBILE_BREAKPOINT);
     };
     window.addEventListener("resize", handleResize);
     handleResize();
@@ -89,7 +116,9 @@ function DashboardLayout() {
         sidebarWidth={sidebarWidth}
         setSidebarWidth={setSidebarWidth}
         isMobile={isMobile}
+        onSubmitDate={fetchMenuByDate} // 👈 HERE
       />
+
 
       <Header
         isSidebarOpen={isSidebarOpen}
